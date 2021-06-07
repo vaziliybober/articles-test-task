@@ -1,12 +1,12 @@
 export default {
   fonts: {
-    body: 'system-ui, sans-serif',
-    heading: '"Avenir Next", sans-serif',
-    monospace: 'Menlo, monospace',
+    body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
   },
   colors: {
     text: '#000',
     background: '#fff',
-    primary: '#33e',
+    primary: '#07c',
+    secondary: '#30c',
+    muted: '#f6f6f6',
   },
 }
