@@ -1,12 +1,15 @@
 import React from 'react'
 
-import { getArticles } from '../api'
+import { getArticles } from '../../api'
+
+import Article from './Article'
 
 export default function HomePage() {
   const [articles, setArticles] = React.useState()
+
   React.useEffect(() => {
     const fetch = async () => {
-      const fetchedArticles = await getArticles(2, 1)
+      const fetchedArticles = await getArticles()
       setArticles(fetchedArticles)
     }
 
@@ -15,7 +18,7 @@ export default function HomePage() {
   return (
     <div>
       <h2>Articles</h2>
-      <div>{JSON.stringify(articles, null, 2)}</div>
+      <div>{articles && articles.map((article) => <Article article={article}></Article>)}</div>
     </div>
   )
 }
