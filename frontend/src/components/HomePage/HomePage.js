@@ -6,37 +6,45 @@ import { getArticles } from '../../api'
 import Article from './Article'
 import Paginator from '../shared/Paginator'
 
+const ARTICLES_PER_PAGE = 2
+
 export default function HomePage() {
   const [articles, setArticles] = React.useState()
   const [total, setTotal] = React.useState()
   const [pageIndex, setPageIndex] = React.useState(0)
 
-  React.useEffect(() => {
-    const fetch = async () => {
-      const data = await getArticles()
-      setArticles(data.articles)
-      setTotal(data.total)
-    }
+  const fetch = async (limit, offset) => {
+    const data = await getArticles(limit, offset)
+    setArticles(data.articles)
+    setTotal(data.total)
+  }
 
-    fetch()
+  React.useEffect(() => {
+    fetch(ARTICLES_PER_PAGE, 0)
   }, [])
 
-  const handlePaginatorChange = (value) => {
-    setPageIndex(value)
+  const handlePaginatorChange = async (newPageIndex) => {
+    await fetch(ARTICLES_PER_PAGE, newPageIndex * ARTICLES_PER_PAGE)
+    setPageIndex(newPageIndex)
   }
 
   return (
     <Container>
       <Heading>Articles</Heading>
-      <ArticlesContainer>
-        {articles &&
-          articles.map((article) => <Article article={article}></Article>)}
-      </ArticlesContainer>
-      <StyledPaginator
-        current={pageIndex}
-        total={total}
-        onChange={handlePaginatorChange}
-      />
+      {articles && (
+        <>
+          <ArticlesContainer>
+            {articles.map((article) => (
+              <Article article={article}></Article>
+            ))}
+          </ArticlesContainer>
+          <StyledPaginator
+            current={pageIndex}
+            total={total / ARTICLES_PER_PAGE}
+            onChange={handlePaginatorChange}
+          />
+        </>
+      )}
     </Container>
   )
 }
