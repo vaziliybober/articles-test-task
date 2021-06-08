@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Spinner } from 'theme-ui'
 
 import { getArticles } from '../../api'
 
@@ -17,6 +18,9 @@ export default function HomePage() {
     const data = await getArticles(limit, offset)
     setArticles(data.articles)
     setTotal(data.total)
+    if (pageIndex >= total) {
+      setPageIndex(total - 1)
+    }
   }
 
   React.useEffect(() => {
@@ -31,7 +35,9 @@ export default function HomePage() {
   return (
     <Container>
       <Heading>Articles</Heading>
-      {articles && (
+      {!articles ? (
+        <Spinner />
+      ) : (
         <>
           <ArticlesContainer>
             {articles.map((article) => (
@@ -41,6 +47,7 @@ export default function HomePage() {
           <StyledPaginator
             current={pageIndex}
             total={total / ARTICLES_PER_PAGE}
+            shown={2}
             onChange={handlePaginatorChange}
           />
         </>

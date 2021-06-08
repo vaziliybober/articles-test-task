@@ -10,6 +10,18 @@ const getPageRange = (current, total, shown) => {
     return getRange(0, total)
   }
 
+  if (shown === 1) {
+    return getRange(current, 1)
+  }
+
+  if (shown === 2) {
+    if (total - current < 2) {
+      return getRange(total - 2, 2)
+    }
+
+    return getRange(current, 2)
+  }
+
   if (current === 0) {
     return getRange(0, shown)
   }
@@ -17,7 +29,6 @@ const getPageRange = (current, total, shown) => {
   if (total - current + 1 < shown) {
     return getRange(total - shown, shown)
   }
-
   return getRange(current - 1, shown)
 }
 
