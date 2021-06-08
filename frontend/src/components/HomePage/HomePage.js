@@ -1,5 +1,5 @@
-/** @jsxImportSource theme-ui */
 import React from 'react'
+import styled from '@emotion/styled'
 
 import { getArticles } from '../../api'
 
@@ -19,13 +19,29 @@ export default function HomePage() {
     fetch()
   }, [])
   return (
-    <div>
+    <Container>
       <h2>Articles</h2>
       <div>
         {articles &&
           articles.map((article) => <Article article={article}></Article>)}
       </div>
-      <Paginator current={pageIndex} total={12} setCurrent={setPageIndex} />
-    </div>
+      <StyledPaginator
+        current={pageIndex}
+        total={12}
+        setCurrent={setPageIndex}
+      />
+    </Container>
   )
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  padding: 10px 20px;
+`
+
+const StyledPaginator = styled(Paginator)`
+  margin-top: auto;
+`

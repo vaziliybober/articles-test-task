@@ -1,11 +1,23 @@
 import React from 'react'
+import styled from '@emotion/styled'
 
-export default function Article({ article }) {
+export default function Article({ article, className }) {
   return (
-    <div style={{ border: '1px solid black', padding: 10, margin: 10 }}>
+    <Container className={className}>
       <div>{article.id}</div>
       <div>{article.date}</div>
       <div>{article.title}</div>
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${({ theme }) => theme.colors.text};
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+`
