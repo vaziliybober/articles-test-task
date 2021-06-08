@@ -23,7 +23,7 @@ const getPageRange = (current, total, shown) => {
 
 export default function Paginator({
   current,
-  setCurrent,
+  onChange,
   total,
   shown = 4,
   className,
@@ -32,20 +32,18 @@ export default function Paginator({
 
   return (
     <Container className={className}>
-      <PageNumber onClick={() => setCurrent((prev) => Math.max(0, prev - 1))}>
+      <PageNumber onClick={() => onChange(Math.max(0, current - 1))}>
         {'<'}
       </PageNumber>
       {pageIndexes.map((pageIndex) => (
         <PageNumber
           active={pageIndex === current}
-          onClick={() => setCurrent(pageIndex)}
+          onClick={() => onChange(pageIndex)}
         >
           {pageIndex + 1}
         </PageNumber>
       ))}
-      <PageNumber
-        onClick={() => setCurrent((prev) => Math.min(total - 1, prev + 1))}
-      >
+      <PageNumber onClick={() => onChange(Math.min(total - 1, current + 1))}>
         {'>'}
       </PageNumber>
     </Container>

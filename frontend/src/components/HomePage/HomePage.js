@@ -8,16 +8,23 @@ import Paginator from '../shared/Paginator'
 
 export default function HomePage() {
   const [articles, setArticles] = React.useState()
+  const [total, setTotal] = React.useState()
   const [pageIndex, setPageIndex] = React.useState(0)
 
   React.useEffect(() => {
     const fetch = async () => {
-      const fetchedArticles = await getArticles()
-      setArticles(fetchedArticles)
+      const data = await getArticles()
+      setArticles(data.articles)
+      setTotal(data.total)
     }
 
     fetch()
   }, [])
+
+  const handlePaginatorChange = (value) => {
+    setPageIndex(value)
+  }
+
   return (
     <Container>
       <Heading>Articles</Heading>
@@ -27,8 +34,8 @@ export default function HomePage() {
       </ArticlesContainer>
       <StyledPaginator
         current={pageIndex}
-        total={12}
-        setCurrent={setPageIndex}
+        total={total}
+        onChange={handlePaginatorChange}
       />
     </Container>
   )

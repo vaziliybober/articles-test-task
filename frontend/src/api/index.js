@@ -8,5 +8,5 @@ export const getArticles = async (limit, offset) => {
     },
   })
 
-  return data.data
+  return { articles: data.data, total: data.total }
 }
