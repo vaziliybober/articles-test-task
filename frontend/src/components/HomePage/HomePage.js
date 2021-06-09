@@ -22,43 +22,71 @@ export default function HomePage() {
 
   return (
     <Container>
-      <Heading>Articles</Heading>
-      <ArticlesContainer>
-        {status === 'loading' ? (
-          <Spinner />
-        ) : status === 'error' ? (
-          <div>{error.message}</div>
-        ) : (
-          articles.map((article) => <Article article={article}></Article>)
-        )}
-      </ArticlesContainer>
-      <StyledPaginator
-        current={pageIndex}
-        total={total / ARTICLES_PER_PAGE}
-        shown={2}
-        onChange={handlePaginatorChange}
-      />
+      <Header>
+        <Heading>Статьи</Heading>
+        <Button>Создать статью</Button>
+      </Header>
+      <Body>
+        <ArticlesContainer>
+          {status === 'loading' ? (
+            <Spinner />
+          ) : status === 'error' ? (
+            <div>{error.message}</div>
+          ) : (
+            articles.map((article) => <Article article={article}></Article>)
+          )}
+        </ArticlesContainer>
+      </Body>
+      <Footer>
+        <Paginator
+          current={pageIndex}
+          total={total / ARTICLES_PER_PAGE}
+          shown={2}
+          onChange={handlePaginatorChange}
+        />
+      </Footer>
     </Container>
   )
 }
 
 const Container = styled.div`
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+`
 
-  padding: 10px 20px;
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+
+  background: ${({ theme }) => theme.colors.primary};
+  padding: 30px 60px;
 `
 
 const Heading = styled.h1`
-  margin-left: 20px;
-  margin-bottom: 40px;
+  margin-right: 30px;
+`
+
+const Button = styled.button`
+  padding: 10px 20px;
+`
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  padding: 60px 20px 20px 20px;
+  background: lightgoldenrodyellow;
 `
 
 const ArticlesContainer = styled.div`
   margin-bottom: 20px;
 `
 
-const StyledPaginator = styled(Paginator)`
+const Footer = styled.div`
   margin-top: auto;
+
+  padding: 20px;
+  background: pink;
 `
