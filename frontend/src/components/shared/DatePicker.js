@@ -19,27 +19,31 @@ export default function DateRangePicker({
       <Text>{text}</Text>
       <DateContainer>
         <>
-          <DatePicker
-            selected={startDate}
-            onChange={onChangeStartDate}
-            maxDate={endDate}
-            isClearable
-            locale="ru"
-            showYearDropdown
-            dropdownMode="select"
-            dateFormat="d MMMM yyyy г."
-          />
+          <DatePickerWrapper>
+            <DatePicker
+              selected={startDate}
+              onChange={onChangeStartDate}
+              maxDate={endDate}
+              isClearable
+              locale="ru"
+              showYearDropdown
+              dropdownMode="select"
+              dateFormat="d MMMM yyyy г."
+            />
+          </DatePickerWrapper>
           <Dash>—</Dash>
-          <DatePicker
-            selected={endDate}
-            onChange={onChangeEndDate}
-            minDate={startDate}
-            isClearable
-            locale="ru"
-            showYearDropdown
-            dropdownMode="select"
-            dateFormat="d MMMM yyyy г."
-          />
+          <DatePickerWrapper>
+            <DatePicker
+              selected={endDate}
+              onChange={onChangeEndDate}
+              minDate={startDate}
+              isClearable
+              locale="ru"
+              showYearDropdown
+              dropdownMode="select"
+              dateFormat="d MMMM yyyy г."
+            />
+          </DatePickerWrapper>
         </>
       </DateContainer>
     </Container>
@@ -56,6 +60,10 @@ const DateContainer = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+`
+
+const DatePickerWrapper = styled.div`
+  margin: 5px 0;
 `
 
 const Dash = styled.div`
