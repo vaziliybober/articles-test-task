@@ -8,6 +8,10 @@ const Textarea = styled.textarea`
   border-radius: 5px;
   border: 1px solid;
   border-color: ${({ theme }) => theme.colors.text};
+
+  &:focus {
+    outline: none;
+  }
 `
 
 export default Textarea

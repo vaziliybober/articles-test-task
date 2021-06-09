@@ -12,8 +12,8 @@ import Textarea from '../shared/Textarea'
 import useArticles from '../../hooks/useArticles'
 
 const schema = Yup.object().shape({
-  title: Yup.string().required('Required'),
-  text: Yup.string().required('Required'),
+  title: Yup.string().required('Обязательное поле'),
+  text: Yup.string().required('Обязательное поле'),
 })
 
 export default function NewArticleForm({ onClose }) {
