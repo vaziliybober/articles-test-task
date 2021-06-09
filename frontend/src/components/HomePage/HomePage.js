@@ -16,13 +16,26 @@ const ARTICLES_PER_PAGE = 6
 export default function HomePage() {
   const [pageIndex, setPageIndex] = React.useState(0)
 
+  const [searchValue, setSearchValue] = React.useState('')
+
   const [startDate, setStartDate] = React.useState()
   const [endDate, setEndDate] = React.useState()
 
   const { articles, total, status, error } = useArticles(
     ARTICLES_PER_PAGE,
-    pageIndex * ARTICLES_PER_PAGE
+    pageIndex * ARTICLES_PER_PAGE,
+    searchValue,
+    startDate,
+    endDate
   )
+
+  const totalPages = Math.ceil(total / ARTICLES_PER_PAGE)
+
+  React.useEffect(() => {
+    if (pageIndex >= totalPages) {
+      setPageIndex(Math.max(0, totalPages - 1))
+    }
+  }, [totalPages])
 
   return (
     <Container>
@@ -30,7 +43,11 @@ export default function HomePage() {
         <Title>Статьи</Title>
         <Button>Создать статью</Button>
 
-        <Search placeholder="Найти статью..." />
+        <Search
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          placeholder="Найти статью..."
+        />
       </Header>
       <Body>
         <DatePicker
@@ -56,7 +73,7 @@ export default function HomePage() {
         {status === 'success' && (
           <Paginator
             current={pageIndex}
-            total={Math.ceil(total / ARTICLES_PER_PAGE)}
+            total={totalPages}
             shown={2}
             onChange={setPageIndex}
           />

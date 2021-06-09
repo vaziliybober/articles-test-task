@@ -3,10 +3,15 @@ import styled from '@emotion/styled'
 
 import searchImg from '../../images/search.svg'
 
-export default function Search({ placeholder, className }) {
+export default function Search({ value, onChange, placeholder, className }) {
   return (
     <Container className={className}>
-      <Input type="search" placeholder={placeholder} />
+      <Input
+        value={value}
+        onChange={onChange}
+        type="text"
+        placeholder={placeholder}
+      />
       <SearchImg src={searchImg} alt="search" />
     </Container>
   )
