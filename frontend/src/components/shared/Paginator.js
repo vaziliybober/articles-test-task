@@ -43,7 +43,10 @@ export default function Paginator({
 
   return (
     <Container className={className}>
-      <PageNumber onClick={() => onChange(Math.max(0, current - 1))}>
+      <PageNumber
+        onClick={() => onChange(Math.max(0, current - 1))}
+        disabled={current === 0}
+      >
         {'<'}
       </PageNumber>
       {pageIndexes.map((pageIndex) => (
@@ -55,7 +58,10 @@ export default function Paginator({
           {pageIndex + 1}
         </PageNumber>
       ))}
-      <PageNumber onClick={() => onChange(Math.min(total - 1, current + 1))}>
+      <PageNumber
+        onClick={() => onChange(Math.min(total - 1, current + 1))}
+        disabled={current === total - 1}
+      >
         {'>'}
       </PageNumber>
     </Container>
@@ -79,6 +85,8 @@ const PageNumber = styled.div`
   border-color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
   user-select: none;
+
+  filter: ${({ disabled }) => disabled && 'brightness(70%)'};
 
   &:not(:last-child) {
     margin-right: 10px;

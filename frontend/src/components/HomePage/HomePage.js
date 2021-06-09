@@ -62,6 +62,8 @@ export default function HomePage() {
             <Spinner />
           ) : status === 'error' ? (
             <div>{`Error: ${error}`}</div>
+          ) : articles.length === 0 ? (
+            <div>Статей не найдено</div>
           ) : (
             articles.map((article) => (
               <Article article={article} key={article.id}></Article>
@@ -70,7 +72,7 @@ export default function HomePage() {
         </ArticlesContainer>
       </Body>
       <Footer>
-        {status === 'success' && (
+        {status === 'success' && totalPages > 0 && (
           <Paginator
             current={pageIndex}
             total={totalPages}
