@@ -50,6 +50,7 @@ export default function Paginator({
         <PageNumber
           active={pageIndex === current}
           onClick={() => onChange(pageIndex)}
+          key={pageIndex}
         >
           {pageIndex + 1}
         </PageNumber>
@@ -83,11 +84,3 @@ const PageNumber = styled.div`
     margin-right: 10px;
   }
 `
-
-// {pageIndexes.map((pageIndex) =>
-//   pageIndex === current ? (
-//     <div style={{ color: 'blue', margin: 10 }}>{pageIndex + 1}</div>
-//   ) : (
-//     <div style={{ margin: 10 }}>{pageIndex + 1}</div>
-//   )
-// )}

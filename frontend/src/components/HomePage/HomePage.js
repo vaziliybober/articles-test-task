@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Spinner, Checkbox as UnstyledCheckbox } from 'theme-ui'
+
+import { Spinner } from 'theme-ui'
 import UnstyledButton from '../shared/Button'
-import Checkbox from '../shared/Checkbox'
 import UnstyledSearch from '../shared/Search'
+import DatePicker from '../shared/DatePicker'
 
 import Article from './Article'
 import Paginator from '../shared/Paginator'
@@ -32,14 +33,19 @@ export default function HomePage() {
         <Search placeholder="Найти статью..." />
       </Header>
       <Body>
-        <Checkbox>По дате</Checkbox>
+        <DatePicker
+          onChange={(date1, date2) => console.log(date1, date2)}
+          text="Фильторвать по дате:"
+        />
         <ArticlesContainer>
           {status === 'loading' ? (
             <Spinner />
           ) : status === 'error' ? (
             <div>{`Error: ${error}`}</div>
           ) : (
-            articles.map((article) => <Article article={article}></Article>)
+            articles.map((article) => (
+              <Article article={article} key={article.id}></Article>
+            ))
           )}
         </ArticlesContainer>
       </Body>
