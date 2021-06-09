@@ -10,6 +10,11 @@ const slice = createSlice({
     error: null,
   },
   reducers: {
+    addArticle: (state, { payload }) => {
+      const { article } = payload
+      state.allIds.unshift(article.id)
+      state.byId[article.id] = article
+    },
     fetchArticlesRequested: (state) => {
       state.status = 'loading'
     },

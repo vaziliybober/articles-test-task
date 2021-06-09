@@ -6,8 +6,14 @@ const getArticles = async () => {
   return { articles, total }
 }
 
+const postArticle = async (articleData) => {
+  const { data } = await axios.post('/api/article', articleData)
+  return data
+}
+
 const api = {
   getArticles,
+  postArticle,
 }
 
 export default api

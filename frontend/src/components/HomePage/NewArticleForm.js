@@ -4,8 +4,12 @@ import styled from '@emotion/styled'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 
+import api from '../../api'
+
 import Button from '../shared/Button'
 import Textarea from '../shared/Textarea'
+
+import useArticles from '../../hooks/useArticles'
 
 const schema = Yup.object().shape({
   title: Yup.string().required('Required'),
@@ -13,10 +17,15 @@ const schema = Yup.object().shape({
 })
 
 export default function NewArticleForm({ onClose }) {
-  const handleSubmit = (values, { setSubmitting }) => {
-    console.log('submit!', values)
+  const { addArticle } = useArticles()
+
+  const handleSubmit = async (values, { setSubmitting }) => {
+    const article = await api.postArticle(values)
+    addArticle(article)
     setSubmitting(false)
+    onClose()
   }
+
   return (
     <Container>
       <Title>Создать статью</Title>
@@ -25,7 +34,7 @@ export default function NewArticleForm({ onClose }) {
         onSubmit={handleSubmit}
         validationSchema={schema}
       >
-        {({ isSubmitting, errors, touched, isValid, dirty }) => (
+        {({ isSubmitting, errors, touched }) => (
           <Form>
             <FieldContainer>
               <Label>Название: </Label>
@@ -42,9 +51,10 @@ export default function NewArticleForm({ onClose }) {
               </ErrorMessage>
             </FieldContainer>
 
-            <Button type="submit" disabled={isSubmitting}>
+            <SubmitButton type="submit" disabled={isSubmitting}>
               Создать
-            </Button>
+            </SubmitButton>
+            <Button onClick={onClose}>Закрыть</Button>
           </Form>
         )}
       </Formik>
@@ -103,4 +113,9 @@ const ErrorMessage = styled.div`
   content: 'sdf';
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   color: red;
+`
+
+const SubmitButton = styled(Button)`
+  margin-right: 15px;
+  margin-bottom: 10px;
 `

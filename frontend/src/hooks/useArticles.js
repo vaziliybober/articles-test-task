@@ -15,12 +15,16 @@ const selector = createSelector(
 
 export default function useArticles() {
   const dispatch = useDispatch()
-
-  React.useEffect(() => {
-    dispatch(actions.fetchArticlesRequested())
-  }, [dispatch])
-
   const data = useSelector(selector)
 
-  return data
+  React.useEffect(() => {
+    if (data.status === 'idle') {
+      dispatch(actions.fetchArticlesRequested())
+    }
+  }, [dispatch, data.status])
+
+  return {
+    ...data,
+    addArticle: (article) => dispatch(actions.addArticle({ article })),
+  }
 }
