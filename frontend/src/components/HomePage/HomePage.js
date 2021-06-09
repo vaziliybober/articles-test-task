@@ -121,6 +121,7 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  margin-bottom: 80px;
 
   padding: 20px 20px 20px 20px;
 `
@@ -130,7 +131,12 @@ const ArticlesContainer = styled.div`
 `
 
 const Footer = styled.div`
-  margin-top: auto;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
 
+  background: ${({ theme }) => theme.colors.text};
   padding: 20px;
 `
