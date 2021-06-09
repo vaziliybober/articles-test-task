@@ -2,8 +2,6 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Spinner } from 'theme-ui'
 
-import { getArticles } from '../../api'
-
 import Article from './Article'
 import Paginator from '../shared/Paginator'
 

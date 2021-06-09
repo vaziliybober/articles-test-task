@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { createSelector } from '@reduxjs/toolkit'
 
 import { actions } from '../slices'
-import { getArticles } from '../api'
+import api from '../api'
 
 const selector = createSelector(
   (state) => state.articles,
@@ -21,7 +21,7 @@ export default (limit, offset) => {
     dispatch(actions.fetchArticlesRequested())
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000))
-      const { articles, total } = await getArticles(limit, offset)
+      const { articles, total } = await api.getArticles(limit, offset)
       dispatch(actions.fetchArticlesSucceeded({ articles, total }))
     } catch (error) {
       dispatch(actions.fetchArticlesFailed({ error }))
