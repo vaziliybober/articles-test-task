@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Spinner, Checkbox as UnstyledCheckbox } from 'theme-ui'
-import Button from '../shared/Button'
+import UnstyledButton from '../shared/Button'
+import Checkbox from '../shared/Checkbox'
+import UnstyledSearch from '../shared/Search'
 
 import Article from './Article'
 import Paginator from '../shared/Paginator'
@@ -26,14 +28,11 @@ export default function HomePage() {
       <Header>
         <Title>Статьи</Title>
         <Button>Создать статью</Button>
-        <div style={{ marginLeft: 'auto' }}>
-          <label for="filter-checkbox">По дате</label>
-          <input type="checkbox" id="filter-checkbox" />
-        </div>
 
-        <Search />
+        <Search placeholder="Найти статью..." />
       </Header>
       <Body>
+        <Checkbox>По дате</Checkbox>
         <ArticlesContainer>
           {status === 'loading' ? (
             <Spinner />
@@ -68,27 +67,26 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
-  color: ${({ theme }) => theme.colors.accent};
 
   background: ${({ theme }) => theme.colors.primary};
-  padding: 30px 60px;
+  padding: 30px 0;
 `
 
 const Title = styled.h1`
+  margin: 10px 10px 10px 60px;
+
   color: ${({ theme }) => theme.colors.textAccent};
   font-size: 55px;
   font-weight: lighter;
   font-family: ${({ theme }) => theme.fonts.heading};
 `
 
-const Search = styled.input`
-  padding: 5px 10px;
-  border-radius: 10px;
+const Button = styled(UnstyledButton)`
+  margin: 10px 10px 10px 60px;
 `
 
-const Checkbox = styled(UnstyledCheckbox)`
-  flex-direction: row;
+const Search = styled(UnstyledSearch)`
+  margin: 10px 20px 10px 60px;
 `
 
 const Body = styled.div`
@@ -96,11 +94,11 @@ const Body = styled.div`
   flex-direction: column;
   height: 100%;
 
-  padding: 60px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 `
 
 const ArticlesContainer = styled.div`
-  margin-bottom: 20px;
+  margin: 30px 0;
 `
 
 const Footer = styled.div`

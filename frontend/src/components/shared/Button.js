@@ -12,6 +12,7 @@ const Button = styled(BasicButton)`
   font-size: 16px;
   white-space: nowrap;
   padding: 0.8em 2em;
+
   border-width: 2px;
   border-color: ${({ theme }) => theme.colors.text};
   border-style: solid;

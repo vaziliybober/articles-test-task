@@ -9,7 +9,6 @@ const theme = {
     background: '#fff',
     primary: '#5EA3E8',
     secondary: '#5E4533',
-    accent: '#B28A6D',
     highlight: '#eee',
     muted: '#f6f6f6',
   },

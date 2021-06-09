@@ -67,6 +67,7 @@ const Container = styled.div`
 
 const PageNumber = styled.div`
   width: 45px;
+
   background: ${({ theme }) => theme.colors.primary};
   padding: 10px 0;
   text-align: center;
