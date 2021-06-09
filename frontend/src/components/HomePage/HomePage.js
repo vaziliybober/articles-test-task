@@ -13,23 +13,47 @@ import useArticles from '../../hooks/useArticles'
 
 const ARTICLES_PER_PAGE = 6
 
+const getDayAfter = (date) => {
+  const dayAfter = new Date(date)
+  dayAfter.setDate(date.getDate() + 1)
+  console.log(dayAfter)
+  return dayAfter
+}
+
+const useFilter = (articles, searchValue, startDate, endDate) => {
+  const filter = () =>
+    articles
+      .filter((article) =>
+        article.title.toLowerCase().includes(searchValue.toLowerCase())
+      )
+      .filter((article) => !startDate || new Date(article.date) >= startDate)
+      .filter(
+        (article) => !endDate || new Date(article.date) <= getDayAfter(endDate)
+      )
+
+  return React.useMemo(filter, [articles, searchValue, startDate, endDate])
+}
+
 export default function HomePage() {
   const [pageIndex, setPageIndex] = React.useState(0)
 
   const [searchValue, setSearchValue] = React.useState('')
-
   const [startDate, setStartDate] = React.useState()
   const [endDate, setEndDate] = React.useState()
 
-  const { articles, total, status, error } = useArticles(
-    ARTICLES_PER_PAGE,
-    pageIndex * ARTICLES_PER_PAGE,
+  const { articles: allArticles, status, error } = useArticles()
+  const filteredArticles = useFilter(
+    allArticles,
     searchValue,
     startDate,
     endDate
   )
+  const articles = filteredArticles.slice(
+    pageIndex * ARTICLES_PER_PAGE,
+    (pageIndex + 1) * ARTICLES_PER_PAGE
+  )
 
-  const totalPages = Math.ceil(total / ARTICLES_PER_PAGE)
+  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE)
 
   React.useEffect(() => {
     if (pageIndex >= totalPages) {
@@ -76,7 +100,7 @@ export default function HomePage() {
           <Paginator
             current={pageIndex}
             total={totalPages}
-            shown={2}
+            shown={3}
             onChange={setPageIndex}
           />
         )}
