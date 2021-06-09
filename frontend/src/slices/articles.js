@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
+import _ from 'lodash'
 
 const slice = createSlice({
   name: 'articles',
   initialState: {
     byId: {},
     allIds: [],
-    total: 0,
     status: 'idle',
     error: null,
   },
@@ -14,6 +14,14 @@ const slice = createSlice({
       const { article } = payload
       state.allIds.unshift(article.id)
       state.byId[article.id] = article
+    },
+    removeArticle: (state, { payload }) => {
+      const { id } = payload
+      return {
+        ...state,
+        allIds: _.without(state.allIds, id),
+        byId: _.omit(state.byId, id),
+      }
     },
     fetchArticlesRequested: (state) => {
       state.status = 'loading'

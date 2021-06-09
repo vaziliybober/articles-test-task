@@ -26,5 +26,6 @@ export default function useArticles() {
   return {
     ...data,
     addArticle: (article) => dispatch(actions.addArticle({ article })),
+    removeArticle: (id) => dispatch(actions.removeArticle({ id })),
   }
 }
