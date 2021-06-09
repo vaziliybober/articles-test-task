@@ -2,33 +2,43 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 import 'react-datepicker/dist/react-datepicker.css'
-import DatePickerComponent, { registerLocale } from 'react-datepicker'
+import DatePicker, { registerLocale } from 'react-datepicker'
 import ru from 'date-fns/locale/ru'
 registerLocale('ru', ru)
 
-export default function DatePicker({ text, onChange }) {
-  const [startDate, setStartDate] = React.useState()
-  const [endDate, setEndDate] = React.useState()
-
+export default function DateRangePicker({
+  text,
+  startDate,
+  endDate,
+  onChangeStartDate,
+  onChangeEndDate,
+  className,
+}) {
   return (
-    <Container>
+    <Container className={className}>
       <Text>{text}</Text>
       <DateContainer>
         <>
-          <DatePickerComponent
+          <DatePicker
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={onChangeStartDate}
             maxDate={endDate}
             isClearable
             locale="ru"
+            showYearDropdown
+            dropdownMode="select"
+            dateFormat="d MMMM yyyy г."
           />
-          —
-          <DatePickerComponent
+          <Dash>—</Dash>
+          <DatePicker
             selected={endDate}
-            onChange={(date) => setEndDate(date)}
+            onChange={onChangeEndDate}
             minDate={startDate}
             isClearable
             locale="ru"
+            showYearDropdown
+            dropdownMode="select"
+            dateFormat="d MMMM yyyy г."
           />
         </>
       </DateContainer>
@@ -46,5 +56,8 @@ const DateContainer = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+`
+
+const Dash = styled.div`
+  margin: 0 10px;
 `

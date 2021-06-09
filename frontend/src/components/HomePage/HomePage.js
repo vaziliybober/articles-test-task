@@ -15,14 +15,14 @@ const ARTICLES_PER_PAGE = 6
 
 export default function HomePage() {
   const [pageIndex, setPageIndex] = React.useState(0)
+
+  const [startDate, setStartDate] = React.useState()
+  const [endDate, setEndDate] = React.useState()
+
   const { articles, total, status, error } = useArticles(
     ARTICLES_PER_PAGE,
     pageIndex * ARTICLES_PER_PAGE
   )
-
-  const handlePaginatorChange = async (newPageIndex) => {
-    setPageIndex(newPageIndex)
-  }
 
   return (
     <Container>
@@ -34,8 +34,11 @@ export default function HomePage() {
       </Header>
       <Body>
         <DatePicker
-          onChange={(date1, date2) => console.log(date1, date2)}
           text="Фильторвать по дате:"
+          startDate={startDate}
+          endDate={endDate}
+          onChangeStartDate={setStartDate}
+          onChangeEndDate={setEndDate}
         />
         <ArticlesContainer>
           {status === 'loading' ? (
@@ -55,7 +58,7 @@ export default function HomePage() {
             current={pageIndex}
             total={Math.ceil(total / ARTICLES_PER_PAGE)}
             shown={2}
-            onChange={handlePaginatorChange}
+            onChange={setPageIndex}
           />
         )}
       </Footer>
