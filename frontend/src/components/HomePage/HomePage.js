@@ -1,12 +1,15 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
+import useModal from 'use-react-modal'
+
 import { Spinner } from 'theme-ui'
 import UnstyledButton from '../shared/Button'
 import UnstyledSearch from '../shared/Search'
 import DatePicker from '../shared/DatePicker'
 
 import Article from './Article'
+import NewArticleForm from './NewArticleForm'
 import Paginator from '../shared/Paginator'
 
 import useArticles from '../../hooks/useArticles'
@@ -35,6 +38,8 @@ const useFilter = (articles, searchValue, startDate, endDate) => {
 }
 
 export default function HomePage() {
+  const { isOpen, openModal, closeModal, Modal } = useModal()
+
   const [pageIndex, setPageIndex] = React.useState(0)
 
   const [searchValue, setSearchValue] = React.useState('')
@@ -59,53 +64,60 @@ export default function HomePage() {
     if (pageIndex >= totalPages) {
       setPageIndex(Math.max(0, totalPages - 1))
     }
-  }, [totalPages])
+  }, [totalPages, pageIndex])
 
   return (
-    <Container>
-      <Header>
-        <Title>Статьи</Title>
-        <Button>Создать статью</Button>
+    <>
+      <Container>
+        <Header>
+          <Title>Статьи</Title>
+          <Button onClick={openModal}>Создать статью</Button>
 
-        <Search
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Найти статью..."
-        />
-      </Header>
-      <Body>
-        <DatePicker
-          text="Фильторвать по дате:"
-          startDate={startDate}
-          endDate={endDate}
-          onChangeStartDate={setStartDate}
-          onChangeEndDate={setEndDate}
-        />
-        <ArticlesContainer>
-          {status === 'loading' ? (
-            <Spinner />
-          ) : status === 'error' ? (
-            <div>{`Error: ${error}`}</div>
-          ) : articles.length === 0 ? (
-            <div>Статей не найдено</div>
-          ) : (
-            articles.map((article) => (
-              <Article article={article} key={article.id}></Article>
-            ))
-          )}
-        </ArticlesContainer>
-      </Body>
-      <Footer>
-        {status === 'success' && totalPages > 0 && (
-          <Paginator
-            current={pageIndex}
-            total={totalPages}
-            shown={3}
-            onChange={setPageIndex}
+          <Search
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Найти статью..."
           />
-        )}
-      </Footer>
-    </Container>
+        </Header>
+        <Body>
+          <DatePicker
+            text="Фильторвать по дате:"
+            startDate={startDate}
+            endDate={endDate}
+            onChangeStartDate={setStartDate}
+            onChangeEndDate={setEndDate}
+          />
+          <ArticlesContainer>
+            {status === 'loading' ? (
+              <Spinner />
+            ) : status === 'error' ? (
+              <div>{`Error: ${error}`}</div>
+            ) : articles.length === 0 ? (
+              <div>Статей не найдено</div>
+            ) : (
+              articles.map((article) => (
+                <Article article={article} key={article.id}></Article>
+              ))
+            )}
+          </ArticlesContainer>
+        </Body>
+        <Footer>
+          {status === 'success' && totalPages > 0 && (
+            <Paginator
+              current={pageIndex}
+              total={totalPages}
+              shown={3}
+              onChange={setPageIndex}
+            />
+          )}
+        </Footer>
+      </Container>
+      {isOpen && (
+        <Modal>
+          <NewArticleForm onClose={closeModal} />
+        </Modal>
+      )}
+    </>
   )
 }
 

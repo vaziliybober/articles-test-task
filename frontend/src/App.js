@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Provider as ModalBackgroundProvider } from 'use-react-modal'
+
 import { ThemeProvider, Global as GlobalStyles, css } from '@emotion/react'
 import theme from './themes/theme'
 
@@ -36,18 +38,20 @@ function App() {
   return (
     <>
       <GlobalStyles styles={styles} />
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Switch>
-            <Route path="/article/:id">
-              <ArticlePage />
-            </Route>
-            <Route path="/">
-              <HomePage />
-            </Route>
-          </Switch>
-        </Router>
-      </ThemeProvider>
+      <ModalBackgroundProvider background="rgba(0, 0, 0, 0.5)">
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Switch>
+              <Route path="/article/:id">
+                <ArticlePage />
+              </Route>
+              <Route path="/">
+                <HomePage />
+              </Route>
+            </Switch>
+          </Router>
+        </ThemeProvider>
+      </ModalBackgroundProvider>
     </>
   )
 }
