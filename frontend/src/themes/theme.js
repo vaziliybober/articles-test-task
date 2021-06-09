@@ -1,12 +1,16 @@
 const theme = {
   fonts: {
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    heading: 'Roboto',
   },
   colors: {
-    text: '#000',
+    text: '#333',
+    textAccent: '#111',
     background: '#fff',
-    primary: '#07c',
-    secondary: '#30c',
+    primary: '#5EA3E8',
+    secondary: '#5E4533',
+    accent: '#B28A6D',
+    highlight: '#eee',
     muted: '#f6f6f6',
   },
 }

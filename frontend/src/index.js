@@ -10,6 +10,7 @@ import reducer from './slices'
 import mySaga from './sagas'
 
 import App from './App'
+import './styles.css'
 
 const sagaMiddleware = createSagaMiddleware()
 

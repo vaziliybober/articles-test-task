@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Spinner } from 'theme-ui'
+import { Spinner, Checkbox as UnstyledCheckbox } from 'theme-ui'
+import Button from '../shared/Button'
 
 import Article from './Article'
 import Paginator from '../shared/Paginator'
 
 import useArticles from '../../hooks/useArticles'
 
-const ARTICLES_PER_PAGE = 2
+const ARTICLES_PER_PAGE = 6
 
 export default function HomePage() {
   const [pageIndex, setPageIndex] = React.useState(0)
@@ -23,8 +24,14 @@ export default function HomePage() {
   return (
     <Container>
       <Header>
-        <Heading>Статьи</Heading>
+        <Title>Статьи</Title>
         <Button>Создать статью</Button>
+        <div style={{ marginLeft: 'auto' }}>
+          <label for="filter-checkbox">По дате</label>
+          <input type="checkbox" id="filter-checkbox" />
+        </div>
+
+        <Search />
       </Header>
       <Body>
         <ArticlesContainer>
@@ -38,12 +45,14 @@ export default function HomePage() {
         </ArticlesContainer>
       </Body>
       <Footer>
-        <Paginator
-          current={pageIndex}
-          total={total / ARTICLES_PER_PAGE}
-          shown={2}
-          onChange={handlePaginatorChange}
-        />
+        {status === 'success' && (
+          <Paginator
+            current={pageIndex}
+            total={Math.ceil(total / ARTICLES_PER_PAGE)}
+            shown={2}
+            onChange={handlePaginatorChange}
+          />
+        )}
       </Footer>
     </Container>
   )
@@ -58,17 +67,28 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: ${({ theme }) => theme.colors.accent};
 
   background: ${({ theme }) => theme.colors.primary};
   padding: 30px 60px;
 `
 
-const Heading = styled.h1`
-  margin-right: 30px;
+const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.textAccent};
+  font-size: 55px;
+  font-weight: lighter;
+  font-family: ${({ theme }) => theme.fonts.heading};
 `
 
-const Button = styled.button`
-  padding: 10px 20px;
+const Search = styled.input`
+  padding: 5px 10px;
+  border-radius: 10px;
+`
+
+const Checkbox = styled(UnstyledCheckbox)`
+  flex-direction: row;
 `
 
 const Body = styled.div`
@@ -77,7 +97,6 @@ const Body = styled.div`
   height: 100%;
 
   padding: 60px 20px 20px 20px;
-  background: lightgoldenrodyellow;
 `
 
 const ArticlesContainer = styled.div`
@@ -88,5 +107,4 @@ const Footer = styled.div`
   margin-top: auto;
 
   padding: 20px;
-  background: pink;
 `
