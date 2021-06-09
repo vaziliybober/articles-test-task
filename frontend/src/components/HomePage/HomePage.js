@@ -7,51 +7,39 @@ import { getArticles } from '../../api'
 import Article from './Article'
 import Paginator from '../shared/Paginator'
 
+import useArticles from '../../hooks/useArticles'
+
 const ARTICLES_PER_PAGE = 2
 
 export default function HomePage() {
-  const [articles, setArticles] = React.useState()
-  const [total, setTotal] = React.useState()
   const [pageIndex, setPageIndex] = React.useState(0)
-
-  const fetch = async (limit, offset) => {
-    const data = await getArticles(limit, offset)
-    setArticles(data.articles)
-    setTotal(data.total)
-    if (pageIndex >= total) {
-      setPageIndex(total - 1)
-    }
-  }
-
-  React.useEffect(() => {
-    fetch(ARTICLES_PER_PAGE, 0)
-  }, [])
+  const { articles, total, status, error } = useArticles(
+    ARTICLES_PER_PAGE,
+    pageIndex * ARTICLES_PER_PAGE
+  )
 
   const handlePaginatorChange = async (newPageIndex) => {
-    await fetch(ARTICLES_PER_PAGE, newPageIndex * ARTICLES_PER_PAGE)
     setPageIndex(newPageIndex)
   }
 
   return (
     <Container>
       <Heading>Articles</Heading>
-      {!articles ? (
-        <Spinner />
-      ) : (
-        <>
-          <ArticlesContainer>
-            {articles.map((article) => (
-              <Article article={article}></Article>
-            ))}
-          </ArticlesContainer>
-          <StyledPaginator
-            current={pageIndex}
-            total={total / ARTICLES_PER_PAGE}
-            shown={2}
-            onChange={handlePaginatorChange}
-          />
-        </>
-      )}
+      <ArticlesContainer>
+        {status === 'loading' ? (
+          <Spinner />
+        ) : status === 'error' ? (
+          <div>{error.message}</div>
+        ) : (
+          articles.map((article) => <Article article={article}></Article>)
+        )}
+      </ArticlesContainer>
+      <StyledPaginator
+        current={pageIndex}
+        total={total / ARTICLES_PER_PAGE}
+        shown={2}
+        onChange={handlePaginatorChange}
+      />
     </Container>
   )
 }
