@@ -10,7 +10,7 @@ const slice = createSlice({
     error: null,
   },
   reducers: {
-    fetchArticlesRequested: (state, { payload }) => {
+    fetchArticlesRequested: (state) => {
       state.status = 'loading'
     },
     fetchArticlesSucceeded: (state, { payload }) => {

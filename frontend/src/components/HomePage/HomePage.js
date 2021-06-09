@@ -31,7 +31,7 @@ export default function HomePage() {
           {status === 'loading' ? (
             <Spinner />
           ) : status === 'error' ? (
-            <div>{error.message}</div>
+            <div>{`Error: ${error}`}</div>
           ) : (
             articles.map((article) => <Article article={article}></Article>)
           )}

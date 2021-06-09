@@ -1,4 +1,4 @@
-export default {
+const theme = {
   fonts: {
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
   },
@@ -10,3 +10,5 @@ export default {
     muted: '#f6f6f6',
   },
 }
+
+export default theme

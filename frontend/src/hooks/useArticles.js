@@ -5,22 +5,27 @@ import { createSelector } from '@reduxjs/toolkit'
 
 import { actions } from '../slices'
 
-const selector = createSelector(
-  (state) => state.articles,
-  ({ byId, allIds, ...rest }) => ({
-    articles: allIds.map((id) => byId[id]),
-    ...rest,
-  })
-)
-
-export default (limit, offset) => {
+export default function useArticles(limit, offset) {
   const dispatch = useDispatch()
 
-  React.useEffect(async () => {
-    dispatch(actions.fetchArticlesRequested({ limit, offset }))
-  }, [limit, offset])
+  const selector = React.useMemo(
+    () =>
+      createSelector(
+        (state) => state.articles,
+        ({ byId, allIds, ...rest }) => ({
+          articles: allIds.slice(offset, offset + limit).map((id) => byId[id]),
+          total: allIds.length,
+          ...rest,
+        })
+      ),
+    [limit, offset]
+  )
 
-  const { articles, total, status, error } = useSelector(selector)
+  React.useEffect(() => {
+    dispatch(actions.fetchArticlesRequested())
+  }, [dispatch])
 
-  return { articles, total, status, error }
+  const data = useSelector(selector)
+
+  return data
 }
