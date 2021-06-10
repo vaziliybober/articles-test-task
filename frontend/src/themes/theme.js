@@ -12,6 +12,7 @@ const theme = {
     secondary: '#5E4533',
     alternative: '#333',
     highlight: '#eee',
+    danger: 'red',
     muted: '#f6f6f6',
   },
 }

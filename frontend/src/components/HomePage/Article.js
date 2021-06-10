@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { useHistory } from 'react-router-dom'
 
 import UnstyledButton from '../shared/Button'
+import Text from '../shared/Text'
 
 import { formatDate } from '../../shared'
 import useArticles from '../../hooks/useArticles'
@@ -13,27 +14,23 @@ export default function Article({ article, className }) {
 
   const { removeArticle } = useArticles()
 
-  const handleClick = () => {
+  const moveToArticlePage = () => {
     history.push(`/articles/${article.id}`, {
       title: article.title,
       date: article.date,
     })
   }
 
-  const handleRemove = () => {
-    removeArticle(article.id)
-  }
-
   return (
-    <Container className={className} onClick={handleClick}>
-      <ContentContainer>
+    <Container className={className} onClick={moveToArticlePage}>
+      <div>
         <Title>{article.title}</Title>
         <div>{formatDate(article.date)}</div>
-      </ContentContainer>
+      </div>
       <Button
         onClick={(e) => {
           e.stopPropagation()
-          handleRemove()
+          removeArticle(article.id)
         }}
       >
         Удалить
@@ -46,10 +43,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 10px;
   border-width: 1px;
   border-style: solid;
   border-color: ${({ theme }) => theme.colors.text};
+  border-radius: 3px;
   cursor: pointer;
 
   &:not(:last-child) {
@@ -57,13 +56,12 @@ const Container = styled.div`
   }
 `
 
-const ContentContainer = styled.div``
-
-const Title = styled.h2`
+const Title = styled(Text)`
   margin-bottom: 10px;
   margin-right: 25px;
 
   font-size: 20px;
+  font-weight: bold;
 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -72,13 +70,10 @@ const Title = styled.h2`
   max-height: 50px;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
 `
 
 const Button = styled(UnstyledButton)`
-  background: red;
+  background: ${({ theme }) => theme.colors.danger};
   padding: 5px 10px;
-  border-width: 1px;
+  border-width: 0;
 `
