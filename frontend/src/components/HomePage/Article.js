@@ -14,7 +14,10 @@ export default function Article({ article, className }) {
   const { removeArticle } = useArticles()
 
   const handleClick = () => {
-    history.push(`/${article.id}`, { title: article.title, date: article.date })
+    history.push(`/articles/${article.id}`, {
+      title: article.title,
+      date: article.date,
+    })
   }
 
   const handleRemove = () => {
