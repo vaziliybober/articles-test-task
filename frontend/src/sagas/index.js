@@ -20,7 +20,6 @@ function* fetchArticle({ payload }) {
   try {
     yield delay(400)
     const article = yield call(api.getArticle, id)
-    console.log(article)
     yield put(actions.fetchArticleSucceeded({ article }))
   } catch (e) {
     yield put(actions.fetchArticleFailed({ error: e.message }))

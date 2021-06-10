@@ -5,19 +5,8 @@ import { useHistory } from 'react-router-dom'
 
 import UnstyledButton from '../shared/Button'
 
+import { formatDate } from '../../shared'
 import useArticles from '../../hooks/useArticles'
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString)
-
-  return date.toLocaleString('ru', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  })
-}
 
 export default function Article({ article, className }) {
   const history = useHistory()

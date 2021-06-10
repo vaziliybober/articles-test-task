@@ -2,6 +2,10 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { useParams, useLocation } from 'react-router-dom'
 
+import { Spinner } from 'theme-ui'
+
+import { formatDate } from '../../shared'
+
 import useArticle from '../../hooks/useArticle'
 
 export default function ArticlePage() {
@@ -12,15 +16,22 @@ export default function ArticlePage() {
   return (
     <Container>
       <Header>
-        <Title>{state.title}</Title>
+        <Title>{state?.title || article?.title}</Title>
       </Header>
-      {status === 'loading' ? (
-        <div>Loading...</div>
-      ) : status === 'error' ? (
-        <div>{error}</div>
-      ) : (
-        <div>{JSON.stringify(article, null, 2)}</div>
-      )}
+      <Body>
+        {status === 'loading' ? (
+          <Spinner />
+        ) : status === 'error' ? (
+          <div>{error}</div>
+        ) : (
+          article && (
+            <div>
+              <div>{formatDate(article.date)}</div>
+              <div>{article.text}</div>
+            </div>
+          )
+        )}
+      </Body>
     </Container>
   )
 }
@@ -44,4 +55,12 @@ const Title = styled.h1`
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
+`
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  padding: 20px 20px 20px 20px;
 `
