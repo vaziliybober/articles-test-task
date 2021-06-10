@@ -1,13 +1,20 @@
 import React from 'react'
-import { Global as GlobalStyles, css } from '@emotion/react'
 import styled from '@emotion/styled'
+import {
+  Global as GlobalStyles,
+  css,
+  ThemeProvider as EmotionThemeProvider,
+  useTheme,
+} from '@emotion/react'
 
-import { ThemeProvider as EmotionThemeProvider, useTheme } from '@emotion/react'
+import createPersistedState from 'use-persisted-state'
 
 import light from './themes/light'
 import dark from './themes/dark'
 
 import Button from './components/shared/Button'
+
+const useThemePersisted = createPersistedState('theme')
 
 function GlobalStyler() {
   const theme = useTheme()
@@ -42,7 +49,7 @@ function GlobalStyler() {
 }
 
 export default function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = React.useState(false)
+  const [isDark, setIsDark] = useThemePersisted(false)
 
   return (
     <EmotionThemeProvider theme={isDark ? dark : light}>
