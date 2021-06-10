@@ -20,11 +20,15 @@ const schema = Yup.object().shape({
 export default function NewArticleForm({ onClose }) {
   const { addArticle } = useArticles()
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    const article = await api.postArticle(values)
-    addArticle(article)
-    setSubmitting(false)
-    onClose()
+  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
+    try {
+      const article = await api.postArticle(values)
+      addArticle(article)
+      setSubmitting(false)
+      onClose()
+    } catch (e) {
+      setErrors({ submitError: e.message })
+    }
   }
 
   return (
@@ -34,6 +38,7 @@ export default function NewArticleForm({ onClose }) {
         initialValues={{ title: '', text: '' }}
         onSubmit={handleSubmit}
         validationSchema={schema}
+        on
       >
         {({ isSubmitting, errors, touched }) => (
           <Form>
@@ -57,6 +62,9 @@ export default function NewArticleForm({ onClose }) {
                 Отправить
               </SubmitButton>
               <Spinner size={30} loading={isSubmitting} />
+              <ErrorMessage show={errors.submitError}>
+                {errors.submitError || 'invisible text'}
+              </ErrorMessage>
             </SubmitContainer>
           </Form>
         )}
@@ -113,9 +121,8 @@ const TextTextarea = styled(Textarea)`
 `
 
 const ErrorMessage = styled.div`
-  content: 'sdf';
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
-  color: red;
+  color: ${({ theme }) => theme.colors.danger};
 `
 
 const SubmitButton = styled(Button)`

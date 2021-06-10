@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 import Spinner from '../shared/Spinner'
+import ErrorText from '../shared/ErrorText'
 
 import Comment from './Comment'
 import NewCommentForm from './NewCommentForm'
@@ -16,7 +17,7 @@ export default function Comments({ articleId, className }) {
       {status === 'loading' ? (
         <Spinner />
       ) : status === 'error' ? (
-        <div>{error}</div>
+        <ErrorText>{error}</ErrorText>
       ) : (
         <>
           <NewCommentForm articleId={articleId} />

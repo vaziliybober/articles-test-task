@@ -19,15 +19,22 @@ const schema = Yup.object().shape({
 export default function NewCommentForm({ articleId }) {
   const { addComment } = useComments(articleId)
 
-  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    const comment = await api.postComment(articleId, {
-      ...values,
-      user: 'Anonymous',
-    })
-    console.log(comment)
-    addComment(comment)
-    setSubmitting(false)
-    resetForm()
+  const handleSubmit = async (
+    values,
+    { setSubmitting, resetForm, setErrors }
+  ) => {
+    try {
+      const comment = await api.postComment(articleId, {
+        ...values,
+        user: 'Anonymous',
+      })
+      console.log(comment)
+      addComment(comment)
+      setSubmitting(false)
+      resetForm()
+    } catch (e) {
+      setErrors({ submitError: e.message })
+    }
   }
 
   return (
@@ -51,7 +58,10 @@ export default function NewCommentForm({ articleId }) {
               <SubmitButton type="submit" disabled={isSubmitting}>
                 Отправить
               </SubmitButton>
-              {isSubmitting && <Spinner size={40} />}
+              <Spinner size={40} loading={isSubmitting} />
+              <ErrorMessage show={errors.submitError}>
+                {errors.submitError || 'invisible text'}
+              </ErrorMessage>
             </SubmitContainer>
           </Form>
         )}
@@ -86,9 +96,8 @@ const SubmitButton = styled(Button)`
 `
 
 const ErrorMessage = styled.div`
-  content: 'sdf';
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
-  color: red;
+  color: ${({ theme }) => theme.colors.danger};
 `
 
 const SubmitContainer = styled.div`

@@ -4,6 +4,7 @@ import { useParams, useLocation } from 'react-router-dom'
 
 import Spinner from '../shared/Spinner'
 import UnstyledButton from '../shared/Button'
+import ErrorText from '../shared/ErrorText'
 
 import { formatDate } from '../../shared'
 
@@ -33,7 +34,7 @@ export default function ArticlePage() {
         {status === 'loading' ? (
           <Spinner />
         ) : status === 'error' ? (
-          <div>{error}</div>
+          <ErrorText>{error}</ErrorText>
         ) : (
           article && (
             <>

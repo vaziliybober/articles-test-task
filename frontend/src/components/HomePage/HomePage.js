@@ -7,6 +7,7 @@ import Spinner from '../shared/Spinner'
 import UnstyledButton from '../shared/Button'
 import UnstyledSearch from '../shared/Search'
 import DatePicker from '../shared/DatePicker'
+import ErrorText from '../shared/ErrorText'
 
 import Article from './Article'
 import NewArticleForm from './NewArticleForm'
@@ -78,7 +79,9 @@ export default function HomePage() {
       <Container>
         <Header>
           <Title>Статьи</Title>
-          <Button onClick={openModal}>Создать статью</Button>
+          <Button onClick={openModal} disabled={status !== 'success'}>
+            Создать статью
+          </Button>
           <Search
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
@@ -97,7 +100,7 @@ export default function HomePage() {
             {status === 'loading' ? (
               <Spinner />
             ) : status === 'error' ? (
-              <div>{`Error: ${error}`}</div>
+              <ErrorText>{error}</ErrorText>
             ) : articles.length === 0 ? (
               <div>Статей не найдено</div>
             ) : (
