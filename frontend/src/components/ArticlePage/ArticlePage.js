@@ -16,7 +16,13 @@ export default function ArticlePage() {
   return (
     <Container>
       <Header>
-        <Title>{state?.title || article?.title}</Title>
+        <Title>{article?.title || state?.title}</Title>
+        <DateComponent>
+          <div>
+            {(article && formatDate(article.date)) ||
+              (state && formatDate(state.date))}
+          </div>
+        </DateComponent>
       </Header>
       <Body>
         {status === 'loading' ? (
@@ -24,12 +30,7 @@ export default function ArticlePage() {
         ) : status === 'error' ? (
           <div>{error}</div>
         ) : (
-          article && (
-            <div>
-              <div>{formatDate(article.date)}</div>
-              <div>{article.text}</div>
-            </div>
-          )
+          article && <ArticleText>{article.text}</ArticleText>
         )}
       </Body>
     </Container>
@@ -42,11 +43,11 @@ const Container = styled.div`
 
 const Header = styled.div`
   background: ${({ theme }) => theme.colors.primary};
-  padding: 30px 0;
+  padding: 30px 60px;
 `
 
 const Title = styled.h1`
-  margin: 10px 60px;
+  margin: 10px 0;
 
   font-weight: lighter;
   color: ${({ theme }) => theme.colors.textAccent};
@@ -57,10 +58,20 @@ const Title = styled.h1`
   word-break: break-word;
 `
 
+const DateComponent = styled.div`
+  margin: 10px 0;
+`
+
 const Body = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
 
   padding: 20px 20px 20px 20px;
+`
+
+const ArticleText = styled.p`
+  max-width: 1000px;
+
+  font-size: 18px;
 `
