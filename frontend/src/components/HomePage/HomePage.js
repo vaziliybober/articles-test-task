@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 import useModal from 'use-react-modal'
 
-import { Spinner } from 'theme-ui'
+import Spinner from '../shared/Spinner'
 import UnstyledButton from '../shared/Button'
 import UnstyledSearch from '../shared/Search'
 import DatePicker from '../shared/DatePicker'
@@ -39,7 +39,7 @@ const useFilter = (articles, searchValue, startDate, endDate) => {
 }
 
 export default function HomePage() {
-  const { isOpen, openModal, closeModal, Modal } = useModal()
+  const { isOpen: isModalOpen, openModal, closeModal, Modal } = useModal()
 
   const { articles: allArticles, status, error } = useArticles()
   const {
@@ -59,6 +59,7 @@ export default function HomePage() {
     startDate,
     endDate
   )
+
   const articles = filteredArticles.slice(
     pageIndex * ARTICLES_PER_PAGE,
     (pageIndex + 1) * ARTICLES_PER_PAGE
@@ -78,7 +79,6 @@ export default function HomePage() {
         <Header>
           <Title>Статьи</Title>
           <Button onClick={openModal}>Создать статью</Button>
-
           <Search
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
@@ -118,7 +118,7 @@ export default function HomePage() {
           )}
         </Footer>
       </Container>
-      {isOpen && (
+      {isModalOpen && (
         <Modal>
           <NewArticleForm onClose={closeModal} />
         </Modal>

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms))
 
-const delayTime = 1000
+const delayTime = 2000
 
 const getArticles = async () => {
   await delay(delayTime)
