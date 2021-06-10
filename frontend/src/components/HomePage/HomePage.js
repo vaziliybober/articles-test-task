@@ -182,6 +182,6 @@ const Footer = styled.div`
   width: 100%;
   height: 80px;
 
-  background: ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.colors.alternative};
   padding: 20px;
 `

@@ -12,7 +12,7 @@ const light = {
     secondary: '#5E4533',
     alternative: '#333',
     highlight: '#eee',
-    danger: 'red',
+    danger: '#ee0000',
   },
 }
 

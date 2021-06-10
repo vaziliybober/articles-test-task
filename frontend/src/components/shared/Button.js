@@ -13,7 +13,7 @@ const Button = styled(BasicButton)`
   white-space: nowrap;
   border-width: 2px;
   border-style: solid;
-  border-color: ${({ theme }) => theme.colors.alternative};
+  border-color: ${({ theme }) => theme.colors.highlight};
   border-radius: 5px;
 
   &:hover {

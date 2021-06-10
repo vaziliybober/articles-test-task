@@ -5,14 +5,14 @@ const light = {
     alternative: 'Roboto',
   },
   colors: {
-    text: '#fff',
-    textAccent: '#fff',
-    background: '#000',
-    primary: 'green',
-    secondary: 'yellow',
-    alternative: '#333',
-    highlight: 'orange',
-    danger: 'red',
+    text: '#eee',
+    textAccent: '#eee',
+    background: '#333',
+    primary: '#270426',
+    secondary: '#47b44e',
+    alternative: '#ddd',
+    highlight: '#eee',
+    danger: '#dd0000',
   },
 }
 
