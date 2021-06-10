@@ -66,6 +66,7 @@ export default function NewArticleForm({ onClose }) {
                 {errors.submitError || 'invisible text'}
               </ErrorMessage>
             </SubmitContainer>
+            <CloseButton onClick={onClose}>Закрыть</CloseButton>
           </Form>
         )}
       </Formik>
@@ -126,11 +127,16 @@ const ErrorMessage = styled.div`
 `
 
 const SubmitButton = styled(Button)`
+  width: 150px;
   margin-right: 15px;
+`
+
+const CloseButton = styled(Button)`
+  width: 150px;
 `
 
 const SubmitContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `
