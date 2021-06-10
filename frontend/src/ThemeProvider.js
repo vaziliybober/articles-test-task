@@ -12,9 +12,7 @@ import createPersistedState from 'use-persisted-state'
 import light from './themes/light'
 import dark from './themes/dark'
 
-import Button from './components/shared/Button'
-
-const useThemePersisted = createPersistedState('theme')
+const useThemePersisted = createPersistedState('URSIP-test-task-theme')
 
 function GlobalStyler() {
   const theme = useTheme()
@@ -53,19 +51,45 @@ export default function ThemeProvider({ children }) {
 
   return (
     <EmotionThemeProvider theme={isDark ? dark : light}>
-      <ThemeToggler onClick={() => setIsDark(!isDark)}>theme</ThemeToggler>
+      <ThemeToggler onClick={() => setIsDark(!isDark)}>
+        {isDark ? (
+          <>
+            <ThemeText>тема</ThemeText>
+            <ThemeBox></ThemeBox>
+          </>
+        ) : (
+          <>
+            <ThemeBox></ThemeBox>
+            <ThemeText>тема</ThemeText>
+          </>
+        )}
+      </ThemeToggler>
       <GlobalStyler />
       {children}
     </EmotionThemeProvider>
   )
 }
 
-const ThemeToggler = styled(Button)`
+const ThemeToggler = styled.button`
+  background: transparent;
+  color: ${({ theme }) => theme.colors.text};
+  border: 1px solid;
+  border-color: ${({ theme }) => theme.colors.text};
+  border-radius: 5px;
+  padding: 0;
   position: absolute;
+  display: flex;
   right: 0;
   top: 0;
   margin: 5px;
+`
 
-  padding: 5px;
-  font-size: 10px;
+const ThemeBox = styled.div`
+  background: ${({ theme }) => theme.colors.text};
+
+  padding: 10px;
+`
+
+const ThemeText = styled.span`
+  margin: 0 3px;
 `
