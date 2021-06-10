@@ -17,16 +17,18 @@ export default function Comments({ articleId }) {
         <Spinner />
       ) : status === 'error' ? (
         <div>{error}</div>
-      ) : comments.length === 0 ? (
-        <div>Комментарии отсутствуют</div>
       ) : (
         <>
           <NewCommentForm articleId={articleId} />
-          <CommentsWrapper>
-            {comments.map((comment) => (
-              <Comment comment={comment} key={comment.id} />
-            ))}
-          </CommentsWrapper>
+          {comments.length === 0 ? (
+            <div>Комментарии отсутствуют</div>
+          ) : (
+            <CommentsWrapper>
+              {comments.map((comment) => (
+                <Comment comment={comment} key={comment.id} />
+              ))}
+            </CommentsWrapper>
+          )}
         </>
       )}
     </Container>

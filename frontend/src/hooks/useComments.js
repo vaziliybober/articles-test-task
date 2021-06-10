@@ -25,6 +25,7 @@ export default function useComments(articleId) {
 
   return {
     ...data,
+    addComment: (comment) => dispatch(actions.addComment({ comment })),
   }
 }
 

@@ -6,6 +6,8 @@ import * as Yup from 'yup'
 
 import api from '../../api'
 
+import { Spinner as UnstyledSpinner } from 'theme-ui'
+
 import Button from '../shared/Button'
 import Textarea from '../shared/Textarea'
 
@@ -18,10 +20,15 @@ const schema = Yup.object().shape({
 export default function NewCommentForm({ articleId }) {
   const { addComment } = useComments(articleId)
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    const comment = await api.postComment({ ...values, user: 'Anonymous' })
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const comment = await api.postComment(articleId, {
+      ...values,
+      user: 'Anonymous',
+    })
+    console.log(comment)
     addComment(comment)
     setSubmitting(false)
+    resetForm()
   }
 
   return (
@@ -41,10 +48,12 @@ export default function NewCommentForm({ articleId }) {
                 {errors.text || 'invisible text'}
               </ErrorMessage>
             </FieldContainer>
-
-            <SubmitButton type="submit" disabled={isSubmitting}>
-              Отправить
-            </SubmitButton>
+            <SubmitContainer>
+              <SubmitButton type="submit" disabled={isSubmitting}>
+                Отправить
+              </SubmitButton>
+              {isSubmitting && <Spinner />}
+            </SubmitContainer>
           </Form>
         )}
       </Formik>
@@ -56,9 +65,7 @@ const Container = styled.div`
   width: 800px;
 `
 
-const FieldContainer = styled.div`
-  margin-bottom: 20px;
-`
+const FieldContainer = styled.div``
 
 const Label = styled.div`
   margin-right: 10px;
@@ -77,11 +84,21 @@ const TextTextarea = styled(Textarea)`
 
 const SubmitButton = styled(Button)`
   margin-right: 15px;
-  margin-bottom: 30px;
 `
 
 const ErrorMessage = styled.div`
   content: 'sdf';
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   color: red;
+`
+
+const Spinner = styled(UnstyledSpinner)`
+  width: 40px;
+  height: 40px;
+`
+
+const SubmitContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
 `

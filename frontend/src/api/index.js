@@ -34,11 +34,21 @@ const getComments = async (articleId) => {
   return data.records
 }
 
+const postComment = async (articleId, commentData) => {
+  await delay(delayTime)
+  const { data } = await axios.post('/api/comment', {
+    ...commentData,
+    article: articleId,
+  })
+  return data
+}
+
 const api = {
   getArticles,
   postArticle,
   getArticle,
   getComments,
+  postComment,
 }
 
 export default api

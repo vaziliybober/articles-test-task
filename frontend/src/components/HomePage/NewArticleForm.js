@@ -6,6 +6,8 @@ import * as Yup from 'yup'
 
 import api from '../../api'
 
+import { Spinner as UnstyledSpinner } from 'theme-ui'
+
 import Button from '../shared/Button'
 import Textarea from '../shared/Textarea'
 
@@ -51,10 +53,12 @@ export default function NewArticleForm({ onClose }) {
               </ErrorMessage>
             </FieldContainer>
 
-            <SubmitButton type="submit" disabled={isSubmitting}>
-              Создать
-            </SubmitButton>
-            <Button onClick={onClose}>Закрыть</Button>
+            <SubmitContainer>
+              <SubmitButton type="submit" disabled={isSubmitting}>
+                Отправить
+              </SubmitButton>
+              {isSubmitting && <Spinner />}
+            </SubmitContainer>
           </Form>
         )}
       </Formik>
@@ -117,5 +121,19 @@ const ErrorMessage = styled.div`
 
 const SubmitButton = styled(Button)`
   margin-right: 15px;
-  margin-bottom: 10px;
+`
+
+const CloseButton = styled(Button)`
+  margin-left: auto;
+`
+
+const Spinner = styled(UnstyledSpinner)`
+  width: 40px;
+  height: 40px;
+`
+
+const SubmitContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
 `
