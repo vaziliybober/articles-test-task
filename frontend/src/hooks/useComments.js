@@ -17,10 +17,11 @@ export default function useComments(articleId) {
   const dispatch = useDispatch()
   const data = useSelector(selector)
 
-  React.useEffect(() => {
-    console.log(articleId)
-    dispatch(actions.fetchCommentsRequested({ articleId }))
-  }, [dispatch, articleId])
+  React.useLayoutEffect(() => {
+    if (data.status !== 'success' || data.articleId !== articleId) {
+      dispatch(actions.fetchCommentsRequested({ articleId }))
+    }
+  }, [dispatch, articleId, data.status, data.articleId])
 
   return {
     ...data,

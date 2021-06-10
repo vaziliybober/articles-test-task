@@ -15,8 +15,8 @@ const schema = Yup.object().shape({
   text: Yup.string().required('Обязательное поле'),
 })
 
-export default function NewCommentForm() {
-  const { addComment } = useComments()
+export default function NewCommentForm({ articleId }) {
+  const { addComment } = useComments(articleId)
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const comment = await api.postComment({ ...values, user: 'Anonymous' })

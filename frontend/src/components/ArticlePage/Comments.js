@@ -21,7 +21,7 @@ export default function Comments({ articleId }) {
         <div>Комментарии отсутствуют</div>
       ) : (
         <>
-          <NewCommentForm />
+          <NewCommentForm articleId={articleId} />
           <CommentsWrapper>
             {comments.map((comment) => (
               <Comment comment={comment} key={comment.id} />
