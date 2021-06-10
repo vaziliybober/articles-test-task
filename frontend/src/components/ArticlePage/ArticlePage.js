@@ -3,8 +3,11 @@ import styled from '@emotion/styled'
 import { useParams, useLocation } from 'react-router-dom'
 
 import { Spinner } from 'theme-ui'
+import UnstyledButton from '../shared/Button'
 
 import { formatDate } from '../../shared'
+
+import Comments from './Comments'
 
 import useArticle from '../../hooks/useArticle'
 
@@ -12,6 +15,8 @@ export default function ArticlePage() {
   const { id } = useParams()
   const { state } = useLocation()
   const { article, status, error } = useArticle(id)
+
+  const [showComments, setShowComments] = React.useState(false)
 
   return (
     <Container>
@@ -30,7 +35,15 @@ export default function ArticlePage() {
         ) : status === 'error' ? (
           <div>{error}</div>
         ) : (
-          article && <ArticleText>{article.text}</ArticleText>
+          article && (
+            <>
+              <ArticleText>{article.text}</ArticleText>
+              <Button onClick={() => setShowComments(!showComments)}>
+                {showComments ? 'Скрыть комментарии' : 'Показать комментарии'}
+              </Button>
+              {showComments && <Comments articleId={id} />}
+            </>
+          )
         )}
       </Body>
     </Container>
@@ -63,15 +76,20 @@ const DateComponent = styled.div`
 `
 
 const Body = styled.div`
-  display: flex;
-  flex-direction: column;
   height: 100%;
+  max-width: 1000px;
 
   padding: 20px 20px 20px 20px;
 `
 
 const ArticleText = styled.p`
-  max-width: 1000px;
+  margin-bottom: 60px;
 
   font-size: 18px;
+`
+
+const Button = styled(UnstyledButton)`
+  width: 250px;
+
+  margin-bottom: 20px;
 `

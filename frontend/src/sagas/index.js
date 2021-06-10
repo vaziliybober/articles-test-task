@@ -3,11 +3,8 @@ import { call, put, takeLatest, all } from 'redux-saga/effects'
 import api from '../api'
 import { actions } from '../slices'
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms))
-
 function* fetchArticles() {
   try {
-    yield delay(400)
     const articles = yield call(api.getArticles)
     yield put(actions.fetchArticlesSucceeded({ articles }))
   } catch (e) {
@@ -18,11 +15,20 @@ function* fetchArticles() {
 function* fetchArticle({ payload }) {
   const { id } = payload
   try {
-    yield delay(400)
     const article = yield call(api.getArticle, id)
     yield put(actions.fetchArticleSucceeded({ article }))
   } catch (e) {
     yield put(actions.fetchArticleFailed({ error: e.message }))
+  }
+}
+
+function* fetchComments({ payload }) {
+  const { articleId } = payload
+  try {
+    const comments = yield call(api.getComments, articleId)
+    yield put(actions.fetchCommentsSucceeded({ comments, articleId }))
+  } catch (e) {
+    yield put(actions.fetchCommentsFailed({ error: e.message }))
   }
 }
 
@@ -34,6 +40,10 @@ function* watchFetchArticle() {
   yield takeLatest(actions.fetchArticleRequested, fetchArticle)
 }
 
+function* watchFetchComments() {
+  yield takeLatest(actions.fetchCommentsRequested, fetchComments)
+}
+
 export default function* rootSaga() {
-  yield all([watchFetchArticles(), watchFetchArticle()])
+  yield all([watchFetchArticles(), watchFetchArticle(), watchFetchComments()])
 }

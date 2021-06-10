@@ -4,7 +4,8 @@ import reportWebVitals from './reportWebVitals'
 
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
-import { Provider } from 'react-redux'
+import { Provider as ReduxProvider } from 'react-redux'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import reducer from './slices'
 import mySaga from './sagas'
@@ -21,11 +22,15 @@ const store = configureStore({
 
 sagaMiddleware.run(mySaga)
 
+const queryClient = new QueryClient()
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ReduxProvider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </ReduxProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
