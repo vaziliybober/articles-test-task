@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-export default function Comment({ comment }) {
+import Text from '../shared/Text'
+
+export default function Comment({ comment, className }) {
   return (
-    <Container>
+    <Container className={className}>
       <Username>{comment.user}</Username>
-      <CommentText>{comment.text}</CommentText>
+      <Text>{comment.text}</Text>
     </Container>
   )
 }
@@ -14,21 +16,14 @@ const Container = styled.div`
   margin-bottom: 10px;
 
   background: ${({ theme }) => theme.colors.primary};
+
   padding: 10px 20px;
   border: 1px solid ${({ theme }) => theme.colors.text};
   border-radius: 10px;
 `
 
-const Username = styled.div`
+const Username = styled(Text)`
+  font-size: 18px;
   margin-bottom: 10px;
   font-weight: bold;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
-`
-
-const CommentText = styled.div`
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
 `

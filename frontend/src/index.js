@@ -37,6 +37,7 @@ const globalStyles = css`
     color: ${theme.colors.text};
     background: ${theme.colors.background};
     font-family: ${theme.fonts.body};
+    font-size: 16px;
   }
 `
 
