@@ -17,9 +17,9 @@ export default function useComments(articleId) {
   const dispatch = useDispatch()
   const data = useSelector(selector)
 
-  React.useLayoutEffect(() => {
-    if (!(data.status === 'success' && data.articleId === articleId))
-      dispatch(actions.fetchCommentsRequested({ articleId }))
+  React.useEffect(() => {
+    console.log(articleId)
+    dispatch(actions.fetchCommentsRequested({ articleId }))
   }, [dispatch, articleId])
 
   return {

@@ -86,6 +86,9 @@ const ArticleText = styled.p`
   margin-bottom: 60px;
 
   font-size: 18px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 `
 
 const Button = styled(UnstyledButton)`

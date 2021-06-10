@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { Spinner } from 'theme-ui'
 
 import Comment from './Comment'
+import NewCommentForm from './NewCommentForm'
 
 import useComments from '../../hooks/useComments'
 
@@ -16,12 +17,17 @@ export default function Comments({ articleId }) {
         <Spinner />
       ) : status === 'error' ? (
         <div>{error}</div>
+      ) : comments.length === 0 ? (
+        <div>Комментарии отсутствуют</div>
       ) : (
-        <CommentsWrapper>
-          {comments.map((comment) => (
-            <Comment comment={comment} />
-          ))}
-        </CommentsWrapper>
+        <>
+          <NewCommentForm />
+          <CommentsWrapper>
+            {comments.map((comment) => (
+              <Comment comment={comment} key={comment.id} />
+            ))}
+          </CommentsWrapper>
+        </>
       )}
     </Container>
   )

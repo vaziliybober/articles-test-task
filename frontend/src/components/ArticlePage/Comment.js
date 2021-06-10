@@ -5,7 +5,7 @@ export default function Comment({ comment }) {
   return (
     <Container>
       <Username>{comment.user}</Username>
-      <div>{comment.text}</div>
+      <CommentText>{comment.text}</CommentText>
     </Container>
   )
 }
@@ -22,4 +22,13 @@ const Container = styled.div`
 const Username = styled.div`
   margin-bottom: 10px;
   font-weight: bold;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+`
+
+const CommentText = styled.div`
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 `
