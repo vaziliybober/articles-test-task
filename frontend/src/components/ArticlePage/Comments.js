@@ -8,11 +8,11 @@ import NewCommentForm from './NewCommentForm'
 
 import useComments from '../../hooks/useComments'
 
-export default function Comments({ articleId }) {
+export default function Comments({ articleId, className }) {
   const { comments, status, error } = useComments(articleId)
 
   return (
-    <Container>
+    <Container className={className}>
       {status === 'loading' ? (
         <Spinner />
       ) : status === 'error' ? (
