@@ -20,8 +20,7 @@ const ARTICLES_PER_PAGE = 6
 
 const getDayAfter = (date) => {
   const dayAfter = new Date(date)
-  dayAfter.setDate(date.getDate() + 1)
-
+  dayAfter.setDate(dayAfter.getDate() + 1)
   return dayAfter
 }
 

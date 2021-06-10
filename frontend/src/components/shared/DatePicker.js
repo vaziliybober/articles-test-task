@@ -21,7 +21,7 @@ export default function DateRangePicker({
         <DatePickerWrapper>
           <DatePicker
             selected={startDate}
-            onChange={onChangeStartDate}
+            onChange={(date) => onChangeStartDate(date ? date.getTime() : date)}
             maxDate={endDate}
             isClearable
             locale="ru"
@@ -34,7 +34,7 @@ export default function DateRangePicker({
         <DatePickerWrapper>
           <DatePicker
             selected={endDate}
-            onChange={onChangeEndDate}
+            onChange={(date) => onChangeEndDate(date ? date.getTime() : date)}
             minDate={startDate}
             isClearable
             locale="ru"
