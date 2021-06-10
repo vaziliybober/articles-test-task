@@ -28,7 +28,7 @@ export default function NewCommentForm({ articleId }) {
         ...values,
         user: 'Anonymous',
       })
-      console.log(comment)
+
       addComment(comment)
       setSubmitting(false)
       resetForm()

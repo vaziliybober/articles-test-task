@@ -28,16 +28,3 @@ export default function useComments(articleId) {
     addComment: (comment) => dispatch(actions.addComment({ comment })),
   }
 }
-
-// import { useQuery } from 'react-query'
-// import api from '../api'
-
-// export default function useComments(articleId) {
-//   const {
-//     data: comments,
-//     status,
-//     error,
-//   } = useQuery(['comments', articleId], () => api.getComments(articleId))
-
-//   return { comments, status, error }
-// }
