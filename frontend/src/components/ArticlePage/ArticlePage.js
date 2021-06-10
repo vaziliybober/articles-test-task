@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { useParams, useLocation } from 'react-router-dom'
 
-import { Spinner } from 'theme-ui'
+import Spinner from '../shared/Spinner'
 import UnstyledButton from '../shared/Button'
 
 import { formatDate } from '../../shared'
@@ -79,7 +79,7 @@ const Body = styled.div`
   height: 100%;
   max-width: 1000px;
 
-  padding: 20px 20px 20px 20px;
+  padding: 40px 20px;
 `
 
 const ArticleText = styled.p`

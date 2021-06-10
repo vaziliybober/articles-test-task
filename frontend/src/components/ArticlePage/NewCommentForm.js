@@ -6,8 +6,7 @@ import * as Yup from 'yup'
 
 import api from '../../api'
 
-import { Spinner as UnstyledSpinner } from 'theme-ui'
-
+import Spinner from '../shared/Spinner'
 import Button from '../shared/Button'
 import Textarea from '../shared/Textarea'
 
@@ -52,7 +51,7 @@ export default function NewCommentForm({ articleId }) {
               <SubmitButton type="submit" disabled={isSubmitting}>
                 Отправить
               </SubmitButton>
-              {isSubmitting && <Spinner />}
+              {isSubmitting && <Spinner size={40} />}
             </SubmitContainer>
           </Form>
         )}
@@ -90,11 +89,6 @@ const ErrorMessage = styled.div`
   content: 'sdf';
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   color: red;
-`
-
-const Spinner = styled(UnstyledSpinner)`
-  width: 40px;
-  height: 40px;
 `
 
 const SubmitContainer = styled.div`

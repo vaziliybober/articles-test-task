@@ -6,8 +6,7 @@ import * as Yup from 'yup'
 
 import api from '../../api'
 
-import { Spinner as UnstyledSpinner } from 'theme-ui'
-
+import Spinner from '../shared/Spinner'
 import Button from '../shared/Button'
 import Textarea from '../shared/Textarea'
 
@@ -57,7 +56,7 @@ export default function NewArticleForm({ onClose }) {
               <SubmitButton type="submit" disabled={isSubmitting}>
                 Отправить
               </SubmitButton>
-              {isSubmitting && <Spinner />}
+              <Spinner size={30} loading={isSubmitting} />
             </SubmitContainer>
           </Form>
         )}
@@ -70,10 +69,10 @@ const Container = styled.div`
   background: ${({ theme }) => theme.colors.background};
   width: 800px;
   max-width: 90vw;
+  max-height: 90vh;
 
   padding: 20px 60px;
   overflow-y: auto;
-  max-height: 90vh;
 
   &:last-child::after {
     content: '';
@@ -121,15 +120,6 @@ const ErrorMessage = styled.div`
 
 const SubmitButton = styled(Button)`
   margin-right: 15px;
-`
-
-const CloseButton = styled(Button)`
-  margin-left: auto;
-`
-
-const Spinner = styled(UnstyledSpinner)`
-  width: 40px;
-  height: 40px;
 `
 
 const SubmitContainer = styled.div`

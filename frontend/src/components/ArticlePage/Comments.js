@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { Spinner } from 'theme-ui'
+import Spinner from '../shared/Spinner'
 
 import Comment from './Comment'
 import NewCommentForm from './NewCommentForm'
