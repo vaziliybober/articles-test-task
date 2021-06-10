@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
+import { useHistory } from 'react-router-dom'
+
 import UnstyledButton from '../shared/Button'
 
 import useArticles from '../../hooks/useArticles'
@@ -18,18 +20,32 @@ const formatDate = (dateString) => {
 }
 
 export default function Article({ article, className }) {
+  const history = useHistory()
+
   const { removeArticle } = useArticles()
+
+  const handleClick = () => {
+    history.push(`/${article.id}`)
+  }
+
   const handleRemove = () => {
     removeArticle(article.id)
   }
 
   return (
-    <Container className={className}>
+    <Container className={className} onClick={handleClick}>
       <ContentContainer>
         <Title>{article.title}</Title>
         <div>{formatDate(article.date)}</div>
       </ContentContainer>
-      <Button onClick={handleRemove}>Удалить</Button>
+      <Button
+        onClick={(e) => {
+          e.stopPropagation()
+          handleRemove()
+        }}
+      >
+        Удалить
+      </Button>
     </Container>
   )
 }

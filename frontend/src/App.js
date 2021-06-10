@@ -42,7 +42,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router>
             <Switch>
-              <Route path="/article/:id">
+              <Route path="/:id">
                 <ArticlePage />
               </Route>
               <Route path="/">

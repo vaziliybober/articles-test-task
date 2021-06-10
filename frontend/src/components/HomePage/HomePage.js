@@ -13,6 +13,7 @@ import NewArticleForm from './NewArticleForm'
 import Paginator from '../shared/Paginator'
 
 import useArticles from '../../hooks/useArticles'
+import useHomePage from '../../hooks/useHomePage'
 
 const ARTICLES_PER_PAGE = 6
 
@@ -26,8 +27,10 @@ const getDayAfter = (date) => {
 const useFilter = (articles, searchValue, startDate, endDate) => {
   const filter = () =>
     articles
-      .filter((article) =>
-        article.title.toLowerCase().includes(searchValue.toLowerCase())
+      .filter(
+        (article) =>
+          !searchValue ||
+          article.title.toLowerCase().includes(searchValue.toLowerCase())
       )
       .filter((article) => !startDate || new Date(article.date) >= startDate)
       .filter(
@@ -40,13 +43,18 @@ const useFilter = (articles, searchValue, startDate, endDate) => {
 export default function HomePage() {
   const { isOpen, openModal, closeModal, Modal } = useModal()
 
-  const [pageIndex, setPageIndex] = React.useState(0)
-
-  const [searchValue, setSearchValue] = React.useState('')
-  const [startDate, setStartDate] = React.useState()
-  const [endDate, setEndDate] = React.useState()
-
   const { articles: allArticles, status, error } = useArticles()
+  const {
+    pageIndex,
+    setPageIndex,
+    searchValue,
+    setSearchValue,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+  } = useHomePage()
+
   const filteredArticles = useFilter(
     allArticles,
     searchValue,
