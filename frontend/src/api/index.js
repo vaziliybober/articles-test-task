@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const getArticles = async () => {
   const { data } = await axios.get('/api/article')
-  const { data: articles, total } = data
-  return { articles, total }
+
+  return data.data
 }
 
 const postArticle = async (articleData) => {
@@ -11,9 +11,15 @@ const postArticle = async (articleData) => {
   return data
 }
 
+const getArticle = async (id) => {
+  const { data } = await axios.get(`/api/article/${id}`)
+  return data
+}
+
 const api = {
   getArticles,
   postArticle,
+  getArticle,
 }
 
 export default api

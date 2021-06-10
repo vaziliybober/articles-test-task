@@ -27,10 +27,8 @@ const getDayAfter = (date) => {
 const useFilter = (articles, searchValue, startDate, endDate) => {
   const filter = () =>
     articles
-      .filter(
-        (article) =>
-          !searchValue ||
-          article.title.toLowerCase().includes(searchValue.toLowerCase())
+      .filter((article) =>
+        article.title.toLowerCase().includes(searchValue.toLowerCase())
       )
       .filter((article) => !startDate || new Date(article.date) >= startDate)
       .filter(
@@ -72,7 +70,7 @@ export default function HomePage() {
     if (pageIndex >= totalPages) {
       setPageIndex(Math.max(0, totalPages - 1))
     }
-  }, [totalPages, pageIndex])
+  }, [totalPages, pageIndex, setPageIndex])
 
   return (
     <>

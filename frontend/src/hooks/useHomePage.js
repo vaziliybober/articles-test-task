@@ -1,7 +1,4 @@
-import React from 'react'
-
 import { useSelector, useDispatch } from 'react-redux'
-import { createSelector } from '@reduxjs/toolkit'
 
 import { actions } from '../slices'
 

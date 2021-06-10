@@ -2,15 +2,25 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { useParams, useLocation } from 'react-router-dom'
 
+import useArticle from '../../hooks/useArticle'
+
 export default function ArticlePage() {
   const { id } = useParams()
   const { state } = useLocation()
+  const { article, status, error } = useArticle(id)
 
   return (
     <Container>
       <Header>
         <Title>{state.title}</Title>
       </Header>
+      {status === 'loading' ? (
+        <div>Loading...</div>
+      ) : status === 'error' ? (
+        <div>{error}</div>
+      ) : (
+        <div>{JSON.stringify(article, null, 2)}</div>
+      )}
     </Container>
   )
 }

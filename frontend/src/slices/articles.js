@@ -27,10 +27,9 @@ const slice = createSlice({
       state.status = 'loading'
     },
     fetchArticlesSucceeded: (state, { payload }) => {
-      const { articles, total } = payload
+      const { articles } = payload
       state.byId = Object.fromEntries(articles.map((a) => [a.id, a]))
       state.allIds = articles.map((a) => a.id)
-      state.total = total
       state.status = 'success'
     },
     fetchArticlesFailed: (state, { payload }) => {

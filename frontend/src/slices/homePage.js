@@ -4,7 +4,7 @@ const slice = createSlice({
   name: 'homePage',
   initialState: {
     pageIndex: 0,
-    searchValue: null,
+    searchValue: '',
     startDate: null,
     endDate: null,
   },
