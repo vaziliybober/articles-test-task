@@ -34,36 +34,36 @@ const getPageRange = (current, total, shown) => {
 
 export default function Paginator({
   current,
-  onChange,
   total,
   shown = 4,
+  onChange,
   className,
 }) {
-  const pageIndexes = getPageRange(current, total, shown)
+  const pageRange = getPageRange(current, total, shown)
 
   return (
     <Container className={className}>
-      <PageNumber
+      <PageButton
         onClick={() => onChange(Math.max(0, current - 1))}
         disabled={current === 0}
       >
         {'<'}
-      </PageNumber>
-      {pageIndexes.map((pageIndex) => (
-        <PageNumber
+      </PageButton>
+      {pageRange.map((pageIndex) => (
+        <PageButton
           active={pageIndex === current}
           onClick={() => onChange(pageIndex)}
           key={pageIndex}
         >
           {pageIndex + 1}
-        </PageNumber>
+        </PageButton>
       ))}
-      <PageNumber
+      <PageButton
         onClick={() => onChange(Math.min(total - 1, current + 1))}
         disabled={current === total - 1}
       >
         {'>'}
-      </PageNumber>
+      </PageButton>
     </Container>
   )
 }
@@ -72,20 +72,19 @@ const Container = styled.div`
   display: flex;
 `
 
-const PageNumber = styled.div`
+const PageButton = styled.div`
   width: 45px;
 
   background: ${({ theme }) => theme.colors.primary};
+  color: ${({ active, theme }) =>
+    active ? theme.colors.highlight : theme.colors.text};
   padding: 10px 0;
   text-align: center;
-  color: ${({ active, theme }) =>
-    active ? theme.colors.background : theme.colors.text};
   border-width: 1px;
   border-style: solid;
   border-color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
   user-select: none;
-
   filter: ${({ disabled }) => disabled && 'brightness(70%)'};
 
   &:not(:last-child) {

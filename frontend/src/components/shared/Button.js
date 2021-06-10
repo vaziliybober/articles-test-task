@@ -8,14 +8,12 @@ function BasicButton({ type = 'button', ...props }) {
 const Button = styled(BasicButton)`
   background: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.highlight};
-
+  padding: 0.9em 2em;
   font-size: 16px;
   white-space: nowrap;
-  padding: 0.8em 2em;
-
   border-width: 2px;
-  border-color: ${({ theme }) => theme.colors.text};
   border-style: solid;
+  border-color: ${({ theme }) => theme.colors.alternative};
   border-radius: 5px;
 
   &:hover {

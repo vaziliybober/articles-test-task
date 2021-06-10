@@ -20,7 +20,7 @@ export default function Search({ value, onChange, placeholder, className }) {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  width: 400px;
+  width: 440px;
 
   background: ${({ theme }) => theme.colors.highlight};
   padding: 7.5px 19px 7.5px 9px;
