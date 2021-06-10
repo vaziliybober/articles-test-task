@@ -1930,94 +1930,6 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
-"@syncfusion/ej2-base@~19.1.63", "@syncfusion/ej2-base@~19.1.64":
-  version "19.1.64"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-base/-/ej2-base-19.1.64.tgz#e0af5069a3d7ad76b6195d0905373b5c41651431"
-  integrity sha512-1DwvZ0ul/8AuHfWJU4m9fMtsztHsA5r2vgTW+S3UYSiGn7tOnKc6lDfUhlz+yn/sioYUVHVqZXyt5E5d4XAQTw==
-  dependencies:
-    "@syncfusion/ej2-icons" "~19.1.63"
-
-"@syncfusion/ej2-buttons@~19.1.63":
-  version "19.1.63"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-buttons/-/ej2-buttons-19.1.63.tgz#cdf7ff5eb162244a650dc8062ac93cccf2f42e6f"
-  integrity sha512-kChTWZiZHcroAfaF22N7b1JDSK3U+mPlJHEozjx/qFx8DL5F7p9NunrtsehWYzssWD5FSabdnbcJ6fU4JYACNQ==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.63"
-
-"@syncfusion/ej2-calendars@19.1.66":
-  version "19.1.66"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-calendars/-/ej2-calendars-19.1.66.tgz#093d5f8cab958822ac542789aaba36a1663a075c"
-  integrity sha512-0OpFtSJ10ilXF19JU8dJrj9n229TA8ZfEXzeQyeS2ejTa1NoUBCsU/TTgkoT2UP1s6mxWty5ojtsLrHsESC9pQ==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.64"
-    "@syncfusion/ej2-buttons" "~19.1.63"
-    "@syncfusion/ej2-inputs" "~19.1.66"
-    "@syncfusion/ej2-lists" "~19.1.65"
-    "@syncfusion/ej2-popups" "~19.1.66"
-
-"@syncfusion/ej2-data@~19.1.63":
-  version "19.1.63"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-data/-/ej2-data-19.1.63.tgz#8e67d5253ac99af19a87a744cc1142ef59ae88e2"
-  integrity sha512-b/CDLzLHpdL57/RX7FW8rB6DYtozxbAPBa1OWpzFs/cnf084D2XpSnigaplmbsFwFTQ1O+aaDYWEBn892kn/gw==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.63"
-
-"@syncfusion/ej2-icons@~19.1.63":
-  version "19.1.63"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-icons/-/ej2-icons-19.1.63.tgz#9ea70b59911fd9f6d920367e7cdeeda447b043a8"
-  integrity sha512-v8u+Us55IxqMRZzCdj8ueRgkbVylilaNeuySgdlOHumjucsH9xo24XLJ7iQaSYsOcz9df8yDsd2DsfXAepBQhw==
-
-"@syncfusion/ej2-inputs@~19.1.66":
-  version "19.1.67"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-inputs/-/ej2-inputs-19.1.67.tgz#1b72a1cb4b97e8066961e97a8af42401e2395a7f"
-  integrity sha512-w4EXzgx3i5bzKjtnYp/PrmjpuYquHedTc+j0EYfA1vj6J17a8w8wNUP03Uqp2YFnv44lNoEopgwPytZO0Ro10g==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.64"
-    "@syncfusion/ej2-buttons" "~19.1.63"
-    "@syncfusion/ej2-popups" "~19.1.67"
-    "@syncfusion/ej2-splitbuttons" "~19.1.63"
-
-"@syncfusion/ej2-lists@~19.1.65":
-  version "19.1.65"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-lists/-/ej2-lists-19.1.65.tgz#825b5dfb6119a4bbce2d83a7d2f76137ec209c8e"
-  integrity sha512-XBBRbP5JoHGgOkP29PMGzSWxKmGIZWDvLqG7ZDmXYYrWF+KXO6tJvQxSuiwOKeKThi0un5TPIZvBLDg0f/XUxg==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.64"
-    "@syncfusion/ej2-buttons" "~19.1.63"
-    "@syncfusion/ej2-data" "~19.1.63"
-
-"@syncfusion/ej2-popups@~19.1.63", "@syncfusion/ej2-popups@~19.1.66", "@syncfusion/ej2-popups@~19.1.67":
-  version "19.1.67"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-popups/-/ej2-popups-19.1.67.tgz#e14fb95dfaf17b7754dd3a16d6fc46dd7e4bbf80"
-  integrity sha512-spIv/DE8W9a2hNu6pn0so7zPPLwWGo1nZinPmhvq0MYw+dXOqYKPNLTnKUYI0UWTq7BHOSUZpBiZl2RwgQoldw==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.64"
-    "@syncfusion/ej2-buttons" "~19.1.63"
-
-"@syncfusion/ej2-react-base@~19.1.65":
-  version "19.1.67"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-base/-/ej2-react-base-19.1.67.tgz#7a07c0039f47f776048791ca9b211593d4b85303"
-  integrity sha512-4fioCApvlm1YhhB1RxfnyRRbgl9nsFruZJqCFjOT9XLcBDwq2uDlY8EKY0E9r0AtoSLP8HEVa3rgR0kMaov2hA==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.64"
-
-"@syncfusion/ej2-react-calendars@^19.1.66":
-  version "19.1.66"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-calendars/-/ej2-react-calendars-19.1.66.tgz#4b18794abaa40fc8ea40e7eaf6fbc3c27b9e0b67"
-  integrity sha512-MmujC3P/VWcUHpDf/v+l8tNoK+ZQAhlR8CCUC4oFJw/XMpcG+PTltYqr3nN6JVRTLPbX3h1giDLeEIYL9W3Z9g==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.64"
-    "@syncfusion/ej2-calendars" "19.1.66"
-    "@syncfusion/ej2-react-base" "~19.1.65"
-
-"@syncfusion/ej2-splitbuttons@~19.1.63":
-  version "19.1.63"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-splitbuttons/-/ej2-splitbuttons-19.1.63.tgz#c7612b325bf35d86d642fe81b33b1dcc4ebf67bc"
-  integrity sha512-y9MV/YPXQ3ZXpmoNZgqBw9JCY2ECoSD4bUjL714h/+NI381fZVE3jOjJb7G1NkbEKJ353JUUs7Sg/XVMx4LDYA==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.1.63"
-    "@syncfusion/ej2-popups" "~19.1.63"
-
 "@testing-library/dom@^7.28.1":
   version "7.31.2"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.31.2.tgz#df361db38f5212b88555068ab8119f5d841a8c4a"
@@ -5286,11 +5198,6 @@ execa@^4.0.0:
     onetime "^5.1.0"
     signal-exit "^3.0.2"
     strip-final-newline "^2.0.0"
-
-exenv@^1.2.0:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
-  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exit@^0.1.2:
   version "0.1.2"
@@ -9397,7 +9304,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@15, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9578,16 +9485,6 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
-react-date-range@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/react-date-range/-/react-date-range-1.1.4.tgz#ec47a163c25863883fd44a7595ab93178d9a8566"
-  integrity sha512-0tJWGRtu0OBnScqDR5LA6nFjdL90nUazg9KwFTknudd5V888cbaRiXkaha7X73GDjnfsdyJWIfdWID9sZt/zPw==
-  dependencies:
-    classnames "^2.2.6"
-    prop-types "^15.7.2"
-    react-list "^0.8.13"
-    shallow-equal "^1.2.1"
-
 react-datepicker@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.1.1.tgz#5ecef49c672b2250fca26327c988464e6ba52b62"
@@ -9599,13 +9496,6 @@ react-datepicker@^4.1.1:
     prop-types "^15.7.2"
     react-onclickoutside "^6.10.0"
     react-popper "^2.2.5"
-
-react-day-picker@^7.4.10:
-  version "7.4.10"
-  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.4.10.tgz#d3928fa65c04379ad28c76de22aa85374a8361e1"
-  integrity sha512-/QkK75qLKdyLmv0kcVzhL7HoJPazoZXS8a6HixbVoK6vWey1Od1WRLcxfyEiUsRfccAlIlf6oKHShqY2SM82rA==
-  dependencies:
-    prop-types "^15.6.2"
 
 react-dev-utils@^11.0.3:
   version "11.0.4"
@@ -9670,33 +9560,6 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
-
-react-lifecycles-compat@^3.0.0:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
-  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
-react-list@^0.8.13:
-  version "0.8.16"
-  resolved "https://registry.yarnpkg.com/react-list/-/react-list-0.8.16.tgz#3f19b249998de0086787da3789d35b59553ede3a"
-  integrity sha512-LSxfvdwB9Ip+E+8NBtLPW2pcIngzuV0rSoH9nMt9C2lFjZEbnoBY/ib/Zx121jPgFgg3xYkMlMXSzx5gaiP5ig==
-  dependencies:
-    prop-types "15"
-
-react-modal-hook@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-modal-hook/-/react-modal-hook-3.0.0.tgz#24b2ff2acf288ef25c11e4fb11b329458a823ea3"
-  integrity sha512-mNkJwgEtOoIabuILlWnGAto993WVkimZASBWk/rAGZ6tNIqjx4faQtNdr/X31vw+QGfKhspXc4vPi1jbfkk2Yg==
-
-react-modal@^3.14.2:
-  version "3.14.2"
-  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.14.2.tgz#e04e1119d64c9fbb3db80736eb80ea9372f28778"
-  integrity sha512-CYasEJanwneDsmvtx/fisXhgDxtt3I8jWTVX/tP9dM/J1NgDKU9lgjR9zuCCl33ub2jrTWhXyijCxCzYGN8sJg==
-  dependencies:
-    exenv "^1.2.0"
-    prop-types "^15.7.2"
-    react-lifecycles-compat "^3.0.0"
-    warning "^4.0.3"
 
 react-onclickoutside@^6.10.0:
   version "6.11.2"
@@ -10559,11 +10422,6 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
-
-shallow-equal@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.2.1.tgz#4c16abfa56043aa20d050324efa68940b0da79da"
-  integrity sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==
 
 shebang-command@^1.2.0:
   version "1.2.0"
@@ -11829,7 +11687,7 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-warning@^4.0.2, warning@^4.0.3:
+warning@^4.0.2:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
