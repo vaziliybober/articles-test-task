@@ -25,7 +25,7 @@ export default function Article({ article, className }) {
   const { removeArticle } = useArticles()
 
   const handleClick = () => {
-    history.push(`/${article.id}`)
+    history.push(`/${article.id}`, { title: article.title })
   }
 
   const handleRemove = () => {
@@ -69,8 +69,20 @@ const ContentContainer = styled.div``
 
 const Title = styled.h2`
   margin-bottom: 10px;
+  margin-right: 25px;
 
   font-size: 20px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 25px;
+  max-height: 50px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 `
 
 const Button = styled(UnstyledButton)`
