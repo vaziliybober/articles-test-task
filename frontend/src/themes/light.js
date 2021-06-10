@@ -1,4 +1,4 @@
-const theme = {
+const light = {
   fonts: {
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     heading: 'Roboto',
@@ -13,8 +13,7 @@ const theme = {
     alternative: '#333',
     highlight: '#eee',
     danger: 'red',
-    muted: '#f6f6f6',
   },
 }
 
-export default theme
+export default light

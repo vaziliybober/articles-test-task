@@ -12,19 +12,21 @@ import ArticlePage from './components/ArticlePage/ArticlePage'
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/articles/:id">
-          <ArticlePage />
-        </Route>
-        <Route path="/articles">
-          <HomePage />
-        </Route>
-        <Route path="/">
-          <Redirect to="/articles" />
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <Router>
+        <Switch>
+          <Route path="/articles/:id">
+            <ArticlePage />
+          </Route>
+          <Route path="/articles">
+            <HomePage />
+          </Route>
+          <Route path="/">
+            <Redirect to="/articles" />
+          </Route>
+        </Switch>
+      </Router>
+    </>
   )
 }
 
